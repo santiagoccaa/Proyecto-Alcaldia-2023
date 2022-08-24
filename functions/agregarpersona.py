@@ -10,6 +10,14 @@ try:
 			bd='Personas'
 		)
 
+		if datonombre.get()=="" or datoapellido.get()=="" or datocedula.get()=="":
+
+			messagebox.showinfo('Aviso','Verifique que todos los recuadros esten llenos')
+
+		if len(datonombre.get()) < 3 or len(datoapellido.get())< 3 or len(datocedula.get())< 5:
+
+			messagebox.showerror('Error', 'Cantidad de caracteres incorrecta')
+
 		miconexcion=pymysql.connect()
 		micrusor=miconexcion.cursor()
 
@@ -22,7 +30,3 @@ try:
 		miconexcion.close()
 except:
 	messagebox.showwarning("Aviso", "Error al intentar agregar persona")
-
-
-
-
