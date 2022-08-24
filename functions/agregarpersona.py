@@ -1,14 +1,8 @@
 from tkinter import messagebox
-import pymysql
+import sqlite3
 
 try:
 	def agregarperon():
-		miconexcion=pymysql.connect(
-			host='localhost',
-			user='root',
-			password='',
-			bd='Personas'
-		)
 
 		if datonombre.get()=="" or datoapellido.get()=="" or datocedula.get()=="":
 
