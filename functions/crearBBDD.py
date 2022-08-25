@@ -1,23 +1,20 @@
 import sqlite3
 from tkinter import messagebox
+import datetime
 
 def createbbdd():
-	#----------CREAR BASE DE DATOS--------------------
 
-		micursor=miconexion.cursor()
-		micursor.execute("CREATE DATABASE IF NOT EXISTS Personas")
-		miconexion.close()
-		micursor.close()
+	try:
+		miConexion=sqlite3.connect("bbdd/Listado.db")
 
-	#--------CREAR TABLA EN BASE DE DATOS-------------
+		miCursor=miConexion.cursor()
 
-		micursor=miconexion.cursor()
+		miCursor.execute("CREATE TABLE Lista (Nombre VARCHAR(50) NOT NULL, Apellidos VARCHAR(50) NOT NULL, Cedula INT(10) NOT NULL, Fecha_Ingreso TIMESTAMP NOT NULL)")
 
-		micursor.execute("CREATE TABLE IF NOT EXISTS Datos (ID INT(100) AUTO_INCREMENT, Nombre VARCHAR(20) NOT NULL, Apellidos VARCHAR(50) NOT NULL, Cedula INT(12) NOT NULL UNIQUE, CONSTRAINT persona_pk PRIMARY KEY (ID))")
+		miConexion.commit()
 
-		messagebox.showinfo("Aviso","La BBDD se ha creado correctamente")
-
-		micursor.close()
-		miconexion.close()
+		miConexion.close()
+		
+		messagebox.showinfo("Aviso", "BBDD creada")
 	except:
-		messagebox.showwarning("Aviso","ERROR AL INTENTAR CREAR LA BBDD")
+		messagebox.showwarning("Aviso", "LA BBDD YA EXISTE")

@@ -1,26 +1,23 @@
 from tkinter import messagebox
 import sqlite3
+from datetime import datetime
 
-try:
-	def agregarperon():
 
-		if datonombre.get()=="" or datoapellido.get()=="" or datocedula.get()=="":
+def agregarperson(datoNom,datoAPE,datoC):
 
-			messagebox.showinfo('Aviso','Verifique que todos los recuadros esten llenos')
+	miConexion=sqlite3.connect("bbdd/Listado.db")
+	
+	miCursor=miConexion.cursor()
 
-		if len(datonombre.get()) < 3 or len(datoapellido.get())< 3 or len(datocedula.get())< 5:
+	try: 
+		datos=datoNom, datoAPE, datoC, datetime.today().strftime('%Y-%m-%d')
 
-			messagebox.showerror('Error', 'Cantidad de caracteres incorrecta')
+		miCursor.execute("INSERT INTO Lista VALUES(?,?,?,?)", (datos))
 
-		miconexcion=pymysql.connect()
-		micrusor=miconexcion.cursor()
+		miConexion.commit()
 
-		sql=('INSER INTO Datos (Nombre, Apellidos, Cedula) Values (%s, %s, %s)')
-		datos=(datonombre.get(), datoapellido.get(), datocedula.get())
+		messagebox.showinfo('Aviso','Registros exitoso')
 
-		micrusor.execute(sql, datos)
-
-		miconexcion.commit()
-		miconexcion.close()
-except:
-	messagebox.showwarning("Aviso", "Error al intentar agregar persona")
+	except:
+		messagebox.showerror("Error", "Algo salio mal, revisa que todos los campos este llenos")
+		pass

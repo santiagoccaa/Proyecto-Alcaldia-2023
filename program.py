@@ -2,7 +2,9 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from functions.crearBBDD import createbbdd
-from functions.agregarpersona import agregarperon
+from functions.agregarpersona import agregarperson
+import sqlite3
+import datetime
 
 #-----------------BASE--------------------------------------------------------------
 
@@ -67,6 +69,6 @@ centry=Entry(framecontenido, font=("Poppins 14"), justify=CENTER, textvariable=d
 
 #---------------Botones------------------------------------------------------------
 
-botonregistro=Button(framecontenido, text="Registrar", font=("Poppins 14 bold"), bd=4).place(x=420, y=360)
+botonregistro=Button(framecontenido, text="Registrar", font=("Poppins 14 bold"), bd=4, command=lambda:agregarperson(datonombre.get(), datoapellido.get(),datocedula.get())).place(x=420, y=360)
 
 root.mainloop() # bucle para que la interfaz no se cierre
