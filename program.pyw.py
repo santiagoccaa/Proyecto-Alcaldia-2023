@@ -3,7 +3,6 @@ from tkinter import messagebox
 from PIL import ImageTk, Image
 from functions.crearBBDD import createbbdd
 from functions.agregarpersona import agregarperson
-from functions.mostrarFilas import mostrarfila
 
 #-----------------BASE--------------------------------------------------------------
 
@@ -29,7 +28,7 @@ root.config(menu=menubd)
 
 bbddmenu = Menu(menubd, tearoff=0) # para eliminar unas lineas feas que salen
 bbddmenu.add_command(label="Crear BBDD", command=lambda:createbbdd()) # contenido de caja de BBDD
-bbddmenu.add_command(label="Abrir Listado", command=lambda:mostrarfila())
+bbddmenu.add_command(label="Abrir Listado")
 bbddmenu.add_separator()
 bbddmenu.add_command(label="Salir")
 
